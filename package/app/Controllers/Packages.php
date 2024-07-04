@@ -34,4 +34,18 @@ class Packages extends BaseController
         ];
         return view('outgoing/index', $data);
     }
+
+    public function outgoingAddPage()
+    {
+        $userModel = new AuthModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+
+        $data = [
+            'title' => 'Outgoing',
+            'userInfo' => $userInfo
+        ];
+
+        return view('outgoing/form', $data);
+    }
 }

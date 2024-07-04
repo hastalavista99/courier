@@ -1,5 +1,5 @@
 <?= $this->extend('layouts/main') ?>
-<?= $this->section('title') ?>Units<?= $this->endSection() ?>
+<?= $this->section('title') ?><?= esc($title)?><?= $this->endSection() ?>
 
 
 

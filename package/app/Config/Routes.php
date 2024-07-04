@@ -21,6 +21,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('dashboard', 'Dashboard::index');
     $routes->get('incoming', 'Packages::index');
     $routes->get('outgoing', 'Packages::outgoing');
+    $routes->get('outgoingAdd', 'Packages::outgoingAddPage');
 });
 
 
