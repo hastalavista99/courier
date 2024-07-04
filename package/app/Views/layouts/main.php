@@ -79,7 +79,7 @@
               <a href="javascript:;" class="nav-link text-body p-0 font-weight-bold" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-user cursor-pointer me-1"></i>
                 <span class="d-sm-inline d-none">
-                  <!-- esc($userInfo['user_name']) --></span>
+                  <?= esc($userInfo['username'])?></span>
                 <i class="fa fa-caret-down cursor-pointer"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
