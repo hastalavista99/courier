@@ -59,41 +59,47 @@
                 <form class="row g-3 my-1" action="<?= site_url('assignTenant?id=') ?>" method="post">
                     <?= csrf_field() ?>
                     <div class="col-md-3">
+                        <div class="input-group input-group-static">
+                            <label for="exampleFormControlSelect1" class=" ms-0">Destination</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value=""></option>
+                                <?php foreach ($destinations as $destination) : ?>
+                                    <option value="<?= $destination['id'] ?>"><?= esc($destination['destination']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="input-group input-group-dynamic">
-                            <label for="" class="form-label">Name</label>
-                            <input type="text" name="" id="" class="form-control">
+                            <label for="" class="form-label">Sender</label>
+                            <input type="text" name="sender" id="" class="form-control">
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class=" input-group input-group-dynamic">
-                            <label for="" class="form-label">Name</label>
-                            <input type="text" name="" id="" class="form-control">
+                            <label for="" class="form-label">Sender Mobile</label>
+                            <input type="text" name="senderMobile" id="" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="col-md-3 input-group input-group-dynamic">
-                            <label for="" class="form-label">Name</label>
-                            <input type="text" name="" id="" class="form-control">
+                            <label for="" class="form-label">Recipient</label>
+                            <input type="text" name="recipient" id="" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="input-group input-group-dynamic">
-                            <label for="exampleFormControlSelect1" class=" form-label ms-0">Destination</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option value=""></option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                        <div class=" input-group input-group-dynamic">
+                            <label for="" class="form-label">Recipient Mobile</label>
+                            <input type="text" name="recipientMobile" id="" class="form-control">
                         </div>
-                        
                     </div>
 
-                    <div class="input-group input-group-dynamic">
-                        <textarea class="form-control" rows="5" placeholder="Package description" spellcheck="false"></textarea>
+
+                    <div class="col-md-6">
+                        <div class="input-group input-group-dynamic">
+                            <textarea class="form-control" rows="2" placeholder="Package description" name="description" spellcheck="false"></textarea>
+                        </div>
                     </div>
                     <div class="d-flex align-content-end justify-content-end me-3">
                         <input type="submit" name="" value="Submit" id="submitAssign" class="btn btn-primary">
