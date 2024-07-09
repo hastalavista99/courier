@@ -16,10 +16,13 @@ class Packages extends BaseController
         $userModel = new AuthModel();
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
+        $packageModel = new PackagesModel();
+        $packages = $packageModel->incoming($loggedInUserId);
 
         $data = [
             'title' => 'Incoming',
-            'userInfo' => $userInfo
+            'userInfo' => $userInfo,
+            'packages' => $packages
         ];
         return view('incoming/index', $data);
     }
@@ -31,22 +34,22 @@ class Packages extends BaseController
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
         $packageModel = new PackagesModel();
-        $packages = $packageModel->getPackagesWithUsernames();
+        $packages = $packageModel->outgoing($loggedInUserId);
         $authModel = new AuthModel();
-        
+
 
         $data = [
             'title' => 'Outgoing',
             'userInfo' => $userInfo,
             'packages' => $packages,
-           
+
         ];
         return view('outgoing/index', $data);
     }
 
     public function outgoingAddPage()
     {
-        helper(['url','form']);
+        helper(['url', 'form']);
         $destinationModel = new DestinationsModel();
         $userModel = new AuthModel();
         $loggedInUserId = session()->get('loggedInUser');
@@ -84,7 +87,7 @@ class Packages extends BaseController
             'status' => 'pending',
             'user_id' => $origin,
             'description' => $description,
-            
+
         ];
 
         $query = $packageModel->save($data);
@@ -93,7 +96,6 @@ class Packages extends BaseController
         } else {
             return redirect()->back()->with('success', 'Saved Package Successfully');
         }
-
     }
 
     public function destinations()
@@ -162,14 +164,13 @@ class Packages extends BaseController
         $userInfo = $userModel->find($loggedInUserId);
         $packageModel = new PackagesModel();
         $packages = $packageModel->getPackagesWithUsernames();
-        $authModel = new AuthModel();
-        
+
 
         $data = [
             'title' => 'History',
             'userInfo' => $userInfo,
             'packages' => $packages,
-           
+
         ];
         return view('dashboard/history', $data);
     }

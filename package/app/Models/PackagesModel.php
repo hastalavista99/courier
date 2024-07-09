@@ -12,7 +12,7 @@ class PackagesModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['sender','sender_mobile', 'recepient', 'recepient_mobile', 'origin_id', 'destination_id', 'status', 'paid_amount', 'time', 'user_id', 'description'];
+    protected $allowedFields    = ['sender','sender_mobile', 'recipient', 'recipient_mobile', 'origin_id', 'destination_id', 'status', 'paid_amount', 'time', 'user_id', 'description'];
 
     // protected bool $allowEmptyInserts = false;
     // protected bool $updateOnlyChanged = true;
@@ -50,5 +50,23 @@ class PackagesModel extends Model
                     ->join('auth as origin', 'packages.origin_id = origin.id')
                     ->join('auth as destination', 'packages.destination_id = destination.id')
                     ->findAll();
+    }
+
+    public function incoming($id)
+    {
+        return $this->select('packages.*, origin.username as origin_name, destination.username as destination_name')
+                    ->join('auth as origin', 'packages.origin_id = origin.id')
+                    ->join('auth as destination', 'packages.destination_id = destination.id')
+                    ->where('destination_id', $id)
+                    ->findAll();
+    }
+
+    public function outgoing($id)
+    {
+        return $this->select('packages.*, origin.username as origin_name, destination.username as destination_name')
+        ->join('auth as origin', 'packages.origin_id = origin.id')
+        ->join('auth as destination', 'packages.destination_id = destination.id')
+        ->where('origin_id', $id)
+        ->findAll();
     }
 }

@@ -47,14 +47,7 @@
             <h4 class="row text-capitalize ps-3"><?= esc($title) ?></h4>
           </div>
         </div>
-        <div class="col-md-2 pt-3">
-          <div>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#unitsModal">
-              <i class="material-icons opacity-10 me-2">domain_add</i>
-              Units
-            </button>
-          </div>
-        </div>
+        
       </div>
       <div class="card-body px-0 pb-2">
         <div class="table-responsive p-0">
