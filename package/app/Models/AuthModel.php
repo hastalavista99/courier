@@ -12,7 +12,7 @@ class AuthModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['role', 'username', 'email', 'passkey'];
+    protected $allowedFields    = ['role', 'username', 'mobile', 'passkey'];
 
     // protected bool $allowEmptyInserts = false;
     // protected bool $updateOnlyChanged = true;

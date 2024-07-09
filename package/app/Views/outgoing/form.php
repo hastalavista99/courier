@@ -56,15 +56,15 @@
                 }
                 ?>
 
-                <form class="row g-3 my-1" action="<?= site_url('assignTenant?id=') ?>" method="post">
+                <form class="row g-3 my-1" action="<?= site_url('outgoingAdd?stage='.$userInfo['id']) ?>" method="post">
                     <?= csrf_field() ?>
                     <div class="col-md-3">
                         <div class="input-group input-group-static">
                             <label for="exampleFormControlSelect1" class=" ms-0">Destination</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select class="form-control" id="exampleFormControlSelect1" name="destination">
                                 <option value=""></option>
                                 <?php foreach ($destinations as $destination) : ?>
-                                    <option value="<?= $destination['id'] ?>"><?= esc($destination['destination']) ?></option>
+                                    <option value="<?= $destination['id'] ?>"><?= esc($destination['username']) ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-content-end justify-content-end me-3">
-                        <input type="submit" name="" value="Submit" id="submitAssign" class="btn btn-primary">
+                        <input type="submit" value="Submit" id="submitAssign" class="btn btn-primary">
                     </div>
                 </form>
 

@@ -24,6 +24,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('outgoing', 'Packages::outgoing');
     $routes->get('outgoingAdd', 'Packages::outgoingAddPage');
     $routes->post('outgoingAdd', 'Packages::outgoingAdd');
+    $routes->get('history', 'Packages::history');
     $routes->get('destinations', 'Packages::destinations');
     $routes->post('createDestination', 'Packages::createDestination');
 });
