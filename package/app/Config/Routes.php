@@ -27,6 +27,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('history', 'Packages::history');
     $routes->get('destinations', 'Packages::destinations');
     $routes->post('createDestination', 'Packages::createDestination');
+    $routes->get('profile', 'Auth::profile');
 });
 
 

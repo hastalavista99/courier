@@ -13,7 +13,11 @@
           href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
           target="_blank"
         >
-          <span class="text-white fs-2"><i class="fa fa-truck"></span></i>
+        <img
+            src="<?= base_url('assets/img/icons/logocourier.png')?>"
+            class="navbar-brand-img h-100"
+            alt="main_logo"
+          />
           <span class="ms-1 font-weight-bold text-white"
             >Courier</span
           >
@@ -97,9 +101,9 @@
           >
           <a
             class="btn bg-gradient-primary w-100"
-            href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree"
+            href="https://www.macrologicsys.com"
             type="button"
-            >Upgrade to pro</a
+            >Macrologic Systems</a
           >
         </div>
       </div>

@@ -63,7 +63,7 @@
         <table class="table align-items-center mb-0" id="table">
           <thead>
             <tr>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">parcel id</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">sender</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">sender mobile</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">recipient</th>

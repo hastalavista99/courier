@@ -74,7 +74,19 @@ class Packages extends BaseController
         $senderMobile = esc($this->request->getPost('senderMobile'));
         $recipient = esc($this->request->getPost('recipient'));
         $recipientMobile = esc($this->request->getPost('recipientMobile'));
+        $fee = esc($this->request->getPost('fee'));
+        $paid = $this->request->getPost('paid');
         $description = esc($this->request->getPost('description'));
+
+        switch ($paid) {
+            case 'paid':
+                $pesa = 'Yes';
+                break;
+            
+            default:
+                $pesa = 'No';
+                break;
+        }
 
         $packageModel = new PackagesModel();
         $data = [
@@ -84,7 +96,9 @@ class Packages extends BaseController
             'recipient_mobile' => $recipientMobile,
             'origin_id' => $origin,
             'destination_id' => $destination,
-            'status' => 'pending',
+            'status' => 'Dispatched',
+            'pay_amount' => $fee,
+            'payment' => $pesa,
             'user_id' => $origin,
             'description' => $description,
 

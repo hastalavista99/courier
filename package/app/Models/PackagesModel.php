@@ -12,7 +12,7 @@ class PackagesModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['sender','sender_mobile', 'recipient', 'recipient_mobile', 'origin_id', 'destination_id', 'status', 'paid_amount', 'time', 'user_id', 'description'];
+    protected $allowedFields    = ['sender','sender_mobile', 'recipient', 'recipient_mobile', 'origin_id', 'destination_id', 'status', 'pay_amount', 'payment', 'time', 'user_id', 'description'];
 
     // protected bool $allowEmptyInserts = false;
     // protected bool $updateOnlyChanged = true;

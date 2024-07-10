@@ -127,6 +127,22 @@ class Auth extends BaseController
         }
     }
 
+    public function profile()
+    {
+        helper('form');
+
+        $userModel = new AuthModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+        $data = [
+            'users' => $userModel->findAll(),
+            'title' => 'Profile',
+            'userInfo' => $userInfo
+
+        ];
+        return view('auth/profile', $data);
+    }
+
     public function logout()
     {
         if (session()->has('loggedInUser')) {

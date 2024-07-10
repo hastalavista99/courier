@@ -13,14 +13,6 @@
                     <h4 class="row text-capitalize ps-3"><?= esc($title) ?></h4>
                 </div>
             </div>
-            <div class="col-md-2 pt-3">
-                <div>
-                    <a class="btn btn-success" href="outgoing">
-                        <i class="material-icons opacity-10">chevron_left</i>
-                        Back
-                    </a>
-                </div>
-            </div>
         </div>
         <div class="card-body px-0 pb-2">
             <div class="container">
@@ -56,19 +48,9 @@
                 }
                 ?>
 
-                <form class="row g-3 my-1" action="<?= site_url('outgoingAdd?stage='.$userInfo['id']) ?>" method="post">
+                <form class="row g-3 my-1" action="<?= site_url('outgoingAdd?stage=' . $userInfo['id']) ?>" method="post">
                     <?= csrf_field() ?>
-                    <div class="col-md-3">
-                        <div class="input-group input-group-static">
-                            <label for="exampleFormControlSelect1" class=" ms-0">Destination</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="destination">
-                                <option value=""></option>
-                                <?php foreach ($destinations as $destination) : ?>
-                                    <option value="<?= $destination['id'] ?>"><?= esc($destination['username']) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
+                    
                     <div class="col-md-3">
                         <div class="input-group input-group-dynamic">
                             <label for="" class="form-label">Sender</label>
@@ -76,7 +58,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class=" input-group input-group-dynamic">
                             <label for="" class="form-label">Sender Mobile</label>
                             <input type="text" name="senderMobile" id="" class="form-control">
@@ -88,20 +70,52 @@
                             <input type="text" name="recipient" id="" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class=" input-group input-group-dynamic">
                             <label for="" class="form-label">Recipient Mobile</label>
                             <input type="text" name="recipientMobile" id="" class="form-control">
                         </div>
                     </div>
+<div class="col-md-3">
+                        <div class="input-group input-group-static">
+                            <label for="exampleFormControlSelect1" class=" ms-0">Destination</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="destination">
+                                <option value=""></option>
+                                <?php foreach ($destinations as $destination) : ?>
+                                    <option value="<?= $destination['id'] ?>"><?= esc($destination['username']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
 
-
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="input-group input-group-dynamic">
                             <textarea class="form-control" rows="2" placeholder="Package description" name="description" spellcheck="false"></textarea>
                         </div>
                     </div>
-                    <div class="d-flex align-content-end justify-content-end me-3">
+
+                    <div class="col-md-2">
+                        <div class=" input-group input-group-dynamic">
+                            <label for="" class="form-label">Parcel Fee</label>
+                            <input type="number" name="fee" id="" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" name="paid" type="checkbox" value="paid" id="checkPayment">
+                            <label class="form-check-label" for="checkPayment">
+                                Paid
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="d-flex align-content-between justify-content-between me-3">
+                        <a class="btn btn-success" href="outgoing">
+                            <i class="material-icons opacity-10">chevron_left</i>
+                            Back
+                        </a>
+
                         <input type="submit" value="Submit" id="submitAssign" class="btn btn-primary">
                     </div>
                 </form>
