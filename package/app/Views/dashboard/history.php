@@ -71,7 +71,7 @@
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">origin</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">destination</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">status</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">paid</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">fee</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">time</th>
               <th class="text-secondary opacity-7"></th>
             </tr>
@@ -89,7 +89,7 @@
                   <td class="text-center"><?= esc($package['origin_name']) ?></td>
                   <td class="text-center"><?= esc($package['destination_name']) ?></td>
                   <td class="text-center"><?= esc($package['status']) ?></td>
-                  <td class="text-center"><?= esc($package['paid_amount']) ?></td>
+                  <td class="text-center"><?= esc($package['pay_amount']) ?></td>
                   <td class="text-center"><?= esc($package['time']) ?></td>
                   <td class="text-center">
                     
