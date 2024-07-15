@@ -50,7 +50,7 @@
 
                 <form class="row g-3 my-1" action="<?= site_url('outgoingAdd?stage=' . $userInfo['id']) ?>" method="post">
                     <?= csrf_field() ?>
-                    
+
                     <div class="col-md-3">
                         <div class="input-group input-group-dynamic">
                             <label for="" class="form-label">Sender</label>
@@ -76,7 +76,7 @@
                             <input type="text" name="recipientMobile" id="" class="form-control">
                         </div>
                     </div>
-<div class="col-md-3">
+                    <div class="col-md-3">
                         <div class="input-group input-group-static">
                             <label for="exampleFormControlSelect1" class=" ms-0">Destination</label>
                             <select class="form-control" id="exampleFormControlSelect1" name="destination">
@@ -108,7 +108,22 @@
                                 Paid
                             </label>
                         </div>
-
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" name="paid" type="checkbox" value="paid" id="checkPayment">
+                            <label class="form-check-label" for="checkPayment">
+                                SMS sender
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            <input class="form-check-input" name="paid" type="checkbox" value="paid" id="checkPayment">
+                            <label class="form-check-label" for="checkPayment">
+                                SMS recipient
+                            </label>
+                        </div>
                     </div>
                     <div class="d-flex align-content-between justify-content-between me-3">
                         <a class="btn btn-success" href="outgoing">

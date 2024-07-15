@@ -18,11 +18,18 @@ class Packages extends BaseController
         $userInfo = $userModel->find($loggedInUserId);
         $packageModel = new PackagesModel();
         $packages = $packageModel->incoming($loggedInUserId);
+        foreach ($packages as &$package) {
+            if ($package['status'] == 'Dispatched') {
+                $package['button_text'] = 'Receive';
+            } else {
+                $package['button_text'] = 'Received';
+            }
+        }
 
         $data = [
             'title' => 'Incoming',
             'userInfo' => $userInfo,
-            'packages' => $packages
+            'packages' => $packages,
         ];
         return view('incoming/index', $data);
     }
@@ -35,8 +42,6 @@ class Packages extends BaseController
         $userInfo = $userModel->find($loggedInUserId);
         $packageModel = new PackagesModel();
         $packages = $packageModel->outgoing($loggedInUserId);
-        $authModel = new AuthModel();
-
 
         $data = [
             'title' => 'Outgoing',
@@ -167,6 +172,26 @@ class Packages extends BaseController
             return redirect()->back()->with('fail', 'Saving Destination Failed');
         } else {
             return redirect()->back()->with('success', 'Saved Destination Successfully');
+        }
+    }
+
+    public function incomingPackage()
+    {
+
+        helper(['form', 'url']);
+
+        $packageId = $this->request->getGet('id');
+        $packageModel = new PackagesModel();
+        $data = [
+            'status' => 'Received',
+        ];
+
+        $query = $packageModel->update($packageId, $data);
+
+        if (!$query) {
+            return redirect()->back()->with('fail', 'Something went wrong.');
+        } else {
+            return redirect()->back()->with('success', 'Successful');
         }
     }
 
