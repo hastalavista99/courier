@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Ramsey\Uuid\Uuid;
 
 class PackagesModel extends Model
 {
@@ -12,7 +13,7 @@ class PackagesModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['sender','sender_mobile', 'recipient', 'recipient_mobile', 'origin_id', 'destination_id', 'status', 'pay_amount', 'payment', 'time', 'user_id', 'description'];
+    protected $allowedFields    = ['sender','sender_mobile', 'recipient', 'recipient_mobile', 'origin_id', 'destination_id', 'status', 'pay_amount', 'payment', 'time', 'user_id', 'description', 'unique_id'];
 
     // protected bool $allowEmptyInserts = false;
     // protected bool $updateOnlyChanged = true;
@@ -35,7 +36,7 @@ class PackagesModel extends Model
 
     // // Callbacks
     // protected $allowCallbacks = true;
-    // protected $beforeInsert   = [];
+    protected $beforeInsert   = ['generateUniquePackageId'];
     // protected $afterInsert    = [];
     // protected $beforeUpdate   = [];
     // protected $afterUpdate    = [];
@@ -43,6 +44,26 @@ class PackagesModel extends Model
     // protected $afterFind      = [];
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
+
+    protected function generateUniquePackageId(array $data)
+    {
+        $data['data']['unique_id'] = $this->generateShortUniqueId(10);
+        return $data;
+    }
+
+    private function generateShortUniqueId($length = 10)
+    {
+        // Define the characters to use (uppercase letters and numbers)
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $uniqueId = '';
+
+        // Generate a random string
+        for ($i = 0; $i < $length; $i++) {
+            $uniqueId .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $uniqueId;
+    }
 
     public function getPackagesWithUsernames()
     {

@@ -45,7 +45,7 @@
         <div class="d-flex justify-content-between">
             <div class="row card-header col-md-7 p-0 mx-3 z-index-2 mt-3" style="height: 25px;">
                 <div class="pt-1 pb-1">
-                    <h4 class="row text-capitalize ps-3"><?= esc($title) ?> - <?= esc($package['unique_id'])?></h4>
+                    <h4 class="row text-capitalize ps-3"><?= esc($title) ?> - <?= esc($package['unique_id']) ?></h4>
                 </div>
             </div>
 
@@ -63,8 +63,8 @@
                     <p><span class="text-bold">Description: </span>Ksh <?= esc($package['description']) ?></p>
 
                     <div class="">
-                        <a href="<?= site_url('incoming')?>" class="btn bg-gradient-secondary" >Back</a>
-                        <a href="<?= site_url('incomingPackage') ?>" class="btn bg-gradient-primary">Process</a>
+                        <a href="<?= site_url('history') ?>" class="btn bg-gradient-secondary">Back</a>
+                        <a href="<?= site_url('') ?>" class="btn bg-gradient-primary">Process</a>
                     </div>
                 </div>
             </div>

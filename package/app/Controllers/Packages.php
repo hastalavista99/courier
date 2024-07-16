@@ -34,6 +34,95 @@ class Packages extends BaseController
         return view('incoming/index', $data);
     }
 
+    public function show()
+    {
+        helper(['form', 'url']);
+        $userModel = new AuthModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+        $packageModel = new PackagesModel();
+        $packageId = $this->request->getGet('pid');
+        $origin = esc($this->request->getGet('origin'));
+        $destination = esc($this->request->getGet('destination'));
+
+        $package = $packageModel->find($packageId);
+
+        // Ensure the package exists
+        if (!$package) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Package not found');
+        }
+
+        $data = [
+            'title' => 'Package Details',
+            'userInfo' => $userInfo,
+            'package' => $package,
+            'origin' => $origin,
+            'destination' => $destination,
+
+        ];
+
+        return view('incoming/show', $data);
+    }
+
+    public function outshow()
+    {
+        helper(['form', 'url']);
+        $userModel = new AuthModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+        $packageModel = new PackagesModel();
+        $packageId = $this->request->getGet('pid');
+        $origin = esc($this->request->getGet('origin'));
+        $destination = esc($this->request->getGet('destination'));
+
+        $package = $packageModel->find($packageId);
+        // Ensure the package exists
+        if (!$package) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Package not found');
+        }
+
+        $data = [
+            'title' => 'Package Details',
+            'userInfo' => $userInfo,
+            'package' => $package,
+            'origin' => $origin,
+            'destination' => $destination,
+
+        ];
+
+        return view('outgoing/show', $data);
+    }
+
+    public function historyView()
+    {
+        helper(['form', 'url']);
+        $userModel = new AuthModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+        $packageModel = new PackagesModel();
+        $packageId = $this->request->getGet('pid');
+        $origin = esc($this->request->getGet('origin'));
+        $destination = esc($this->request->getGet('destination'));
+
+        $package = $packageModel->find($packageId);
+
+        // Ensure the package exists
+        if (!$package) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Package not found');
+        }
+
+        $data = [
+            'title' => 'Package Details',
+            'userInfo' => $userInfo,
+            'package' => $package,
+            'origin' => $origin,
+            'destination' => $destination,
+
+        ];
+
+        return view('dashboard/show', $data);
+    }
+
     public function outgoing()
     {
 
@@ -87,7 +176,7 @@ class Packages extends BaseController
             case 'paid':
                 $pesa = 'Yes';
                 break;
-            
+
             default:
                 $pesa = 'No';
                 break;

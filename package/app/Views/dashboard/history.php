@@ -49,14 +49,7 @@
           <h4 class="row text-capitalize ps-3"><?= esc($title) ?></h4>
         </div>
       </div>
-      <div class="col-md-2 pt-3">
-        <div>
-          <a class="btn btn-icon btn-3 btn-primary" type="button" href="<?= site_url('outgoingAdd') ?>">
-            <span class="btn-inner--icon"><i class="fa fa-box me-2"></i></span>
-            <span class="btn-inner--text">Add</span>
-          </a>
-        </div>
-      </div>
+
     </div>
     <div class="card-body px-0 pb-2">
       <div class="table-responsive p-0">
@@ -81,7 +74,7 @@
               <?php foreach ($packages as $package) : ?>
 
                 <tr>
-                  <td class="text-center"><?= esc($package['id']) ?></td>
+                  <td class="text-center"><a href="<?= site_url('history/view?pid=' . $package['id'] . '&origin=' . $package['origin_name'] . '&destination=' . $package['destination_name']) ?>"><?= esc($package['unique_id']) ?></a></td>
                   <td class="text-center"><?= esc($package['sender']) ?></td>
                   <td class="text-center"><?= esc($package['sender_mobile']) ?></td>
                   <td class="text-center"><?= esc($package['recipient']) ?></td>
@@ -92,7 +85,7 @@
                   <td class="text-center"><?= esc($package['pay_amount']) ?></td>
                   <td class="text-center"><?= esc($package['time']) ?></td>
                   <td class="text-center">
-                    
+
                   </td>
 
                 </tr>
