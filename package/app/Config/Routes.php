@@ -32,6 +32,17 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('destinations', 'Packages::destinations');
     $routes->post('createDestination', 'Packages::createDestination');
     $routes->get('profile', 'Auth::profile');
+    $routes->get('payments', 'Payments::index');
+    $routes->get('payments/registration', 'Payments::registration');
+    $routes->get('payments/route', 'Payments::route');
+    $routes->get('payments/savings', 'Payments::savings');
+    $routes->get('payments/operations', 'Payments::operations');
+    $routes->get('payments/loans', 'Payments::loans');
+    $routes->get('payments/insurance', 'Payments::insurance');
+    $routes->get('payments/welfare', 'Payments::welfare');
+    $routes->get('payments/tyres', 'Payments::tyres');
+    $routes->get('payments/miscellaneous', 'Payments::miscellaneous');
+    
 });
 
 
