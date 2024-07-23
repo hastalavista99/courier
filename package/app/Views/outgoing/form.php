@@ -111,7 +111,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-check">
-                            <input class="form-check-input" name="paid" type="checkbox" value="paid" id="checkPayment">
+                            <input class="form-check-input" name="senderSms" type="checkbox" value="senderSms" id="checkPayment">
                             <label class="form-check-label" for="checkPayment">
                                 SMS sender
                             </label>
@@ -119,7 +119,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-check">
-                            <input class="form-check-input" name="paid" type="checkbox" value="paid" id="checkPayment">
+                            <input class="form-check-input" name="recipientSms" type="checkbox" value="recipientSms" id="checkPayment">
                             <label class="form-check-label" for="checkPayment">
                                 SMS recipient
                             </label>

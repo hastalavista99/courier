@@ -3,10 +3,12 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Controllers\SendSMS;
 use App\Models\AuthModel;
 use App\Models\DestinationsModel;
 use App\Libraries\Hash;
 use App\Models\PackagesModel;
+use App\Models\SmsModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Packages extends BaseController
@@ -171,16 +173,17 @@ class Packages extends BaseController
         $fee = esc($this->request->getPost('fee'));
         $paid = $this->request->getPost('paid');
         $description = esc($this->request->getPost('description'));
+        $recipientSms = $this->request->getPost('recipientSms');
+        $senderSms = $this->request->getPost('senderSms');
 
-        switch ($paid) {
-            case 'paid':
-                $pesa = 'Yes';
-                break;
+        // Determine payment status
+        $pesa = ($paid == 'paid') ? 'Yes' : 'No';
 
-            default:
-                $pesa = 'No';
-                break;
-        }
+        // Determine recipient SMS status
+        $recipientSmsStatus = ($recipientSms == 'recipientSms') ? 'Yes' : 'No';
+
+        // Determine sender SMS status
+        $senderSmsStatus = ($senderSms == 'senderSms') ? 'Yes' : 'No';
 
         $packageModel = new PackagesModel();
         $data = [
@@ -195,14 +198,30 @@ class Packages extends BaseController
             'payment' => $pesa,
             'user_id' => $origin,
             'description' => $description,
-
+            'senderSms' => $senderSmsStatus,
+            'recipientSms' => $recipientSmsStatus,
         ];
 
         $query = $packageModel->save($data);
         if (!$query) {
             return redirect()->back()->with('fail', 'Saving Package Failed');
         } else {
-            return redirect()->back()->with('success', 'Saved Package Successfully');
+            if ($senderSmsStatus == 'Yes') {
+
+                $msg = "Hi $sender, your package is en route to its destination, you will be notified when it arrives";
+                $mobile = $senderMobile;
+                $sms = new SendSMS();
+                $sms->sendSMS($mobile, $msg);
+            }
+            if ($recipientSmsStatus == 'Yes') {
+                $msg = "Hi $recipient, your package is on its way, you will be notified
+                when it arrives";
+                $mobile = $recipientMobile;
+                $sms = new SendSMS();
+                $sms->sendSMS($mobile, $msg);
+            }
+
+            return redirect()->back()->with('success', 'Package Saved Successfully');
         }
     }
 
@@ -269,18 +288,36 @@ class Packages extends BaseController
 
         helper(['form', 'url']);
 
+        $destinationModel = new AuthModel();
         $packageId = $this->request->getGet('id');
         $packageModel = new PackagesModel();
         $data = [
             'status' => 'Received',
         ];
 
-        $query = $packageModel->update($packageId, $data);
-
+        $query = $packageModel->where('id', $packageId)->update($packageId, $data);
+        $package = $packageModel->find($packageId);
+        $destination = $package['destination_id'];
+        $destinationData = $destinationModel->find($destination);
         if (!$query) {
             return redirect()->back()->with('fail', 'Something went wrong.');
         } else {
-            return redirect()->back()->with('success', 'Successful');
+            if($package['senderSms'] == 'Yes')
+            {
+                
+                $msg = "Hi ".$package['sender'].", your package ".$package['unique_id']." has arrived in ".$destinationData['username'];
+                $mobile = $package['sender_mobile'];
+                $sms = new SendSMS();
+                $sms->sendSMS($mobile, $msg);
+            }
+            if($package['recipientSms'] == 'Yes')
+            {
+                $msg = "Hi ".$package['recipient'].", your package ".$package['unique_id']." has arrived in ".$destinationData;
+                $mobile = $package['recipient_mobile'];
+                $sms = new SendSMS();
+                $sms->sendSMS($mobile, $msg);
+            }
+            return redirect()->back()->with('success', 'Successfully received package!');
         }
     }
 
