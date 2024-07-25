@@ -295,28 +295,31 @@ class Packages extends BaseController
             'status' => 'Received',
         ];
 
-        $query = $packageModel->where('id', $packageId)->update($packageId, $data);
+        log_message('debug', 'Package ID: ' . print_r($packageId, true));
+log_message('debug', 'Data: ' . print_r($data, true));
+        
+        $query = $packageModel->update($packageId, $data); // Update the data using the ID directly
+        
+
         $package = $packageModel->find($packageId);
         $destination = $package['destination_id'];
         $destinationData = $destinationModel->find($destination);
         if (!$query) {
             return redirect()->back()->with('fail', 'Something went wrong.');
         } else {
-            if($package['senderSms'] == 'Yes')
-            {
-                
-                $msg = "Hi ".$package['sender'].", your package ".$package['unique_id']." has arrived in ".$destinationData['username'];
-                $mobile = $package['sender_mobile'];
-                $sms = new SendSMS();
-                $sms->sendSMS($mobile, $msg);
-            }
-            if($package['recipientSms'] == 'Yes')
-            {
-                $msg = "Hi ".$package['recipient'].", your package ".$package['unique_id']." has arrived in ".$destinationData;
-                $mobile = $package['recipient_mobile'];
-                $sms = new SendSMS();
-                $sms->sendSMS($mobile, $msg);
-            }
+            // if ($package['senderSms'] == 'Yes') {
+
+            //     $msg = "Hi " . $package['sender'] . ", your package " . $package['unique_id'] . " has arrived in " . $destinationData['username'];
+            //     $mobile = $package['sender_mobile'];
+            //     $sms = new SendSMS();
+            //     $sms->sendSMS($mobile, $msg);
+            // }
+            // if ($package['recipientSms'] == 'Yes') {
+            //     $msg = "Hi " . $package['recipient'] . ", your package " . $package['unique_id'] . " has arrived in " . $destinationData;
+            //     $mobile = $package['recipient_mobile'];
+            //     $sms = new SendSMS();
+            //     $sms->sendSMS($mobile, $msg);
+            // }
             return redirect()->back()->with('success', 'Successfully received package!');
         }
     }

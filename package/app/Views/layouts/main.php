@@ -109,7 +109,7 @@
                   </a>
                 </li>
                 <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="logout">
+                  <a class="dropdown-item border-radius-md" href="<?= site_url('logout')?>">
                     <div class="d-flex py-1">
                     <i class="material-icons opacity-10 me-2">logout</i>
                       <div class="d-flex flex-column justify-content-center">

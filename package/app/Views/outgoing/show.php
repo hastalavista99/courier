@@ -64,7 +64,6 @@
 
                     <div class="">
                         <a href="<?= site_url('outgoing') ?>" class="btn bg-gradient-secondary">Back</a>
-                        <a href="<?= site_url('') ?>" class="btn bg-gradient-primary">Process</a>
                     </div>
                 </div>
             </div>

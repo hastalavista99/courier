@@ -74,7 +74,7 @@
               <?php foreach ($packages as $package) : ?>
 
                 <tr>
-                  <td class="text-center"><a href="<?= site_url('history/view?pid=' . $package['id'] . '&origin=' . $package['origin_name'] . '&destination=' . $package['destination_name']) ?>"><?= esc($package['unique_id']) ?></a></td>
+                  <td class="text-center"><a href="<?= site_url('packages/history/view?pid=' . $package['id'] . '&origin=' . $package['origin_name'] . '&destination=' . $package['destination_name']) ?>"><?= esc($package['unique_id']) ?></a></td>
                   <td class="text-center"><?= esc($package['sender']) ?></td>
                   <td class="text-center"><?= esc($package['sender_mobile']) ?></td>
                   <td class="text-center"><?= esc($package['recipient']) ?></td>

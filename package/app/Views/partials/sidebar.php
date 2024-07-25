@@ -36,7 +36,7 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link text-white" href="incoming">
+        <a class="nav-link text-white" href="<?= site_url('packages/incoming')?>">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="material-icons opacity-10">input</i>
           </div>
@@ -44,7 +44,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="outgoing">
+        <a class="nav-link text-white" href="<?= site_url('packages/outgoing')?>">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="material-icons opacity-10">output</i>
           </div>
@@ -52,7 +52,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="history">
+        <a class="nav-link text-white" href="<?= site_url('packages/history')?>">
           <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="material-icons opacity-10">notes</i>
           </div>

@@ -63,8 +63,8 @@
                     <p><span class="text-bold">Description: </span>Ksh <?= esc($package['description']) ?></p>
 
                     <div class="">
-                        <a href="<?= site_url('history') ?>" class="btn bg-gradient-secondary">Back</a>
-                        <a href="<?= site_url('') ?>" class="btn bg-gradient-primary">Process</a>
+                        <a href="<?= site_url('packages/history') ?>" class="btn bg-gradient-secondary">Back</a>
+                        
                     </div>
                 </div>
             </div>

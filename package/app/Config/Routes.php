@@ -20,15 +20,15 @@ $routes->get('logout', 'Auth::logout');
 
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('dashboard', 'Dashboard::index');
-    $routes->get('incoming', 'Packages::index');
+    $routes->get('packages/incoming', 'Packages::index');
     $routes->get('incomingPackage', 'Packages::incomingPackage');
     $routes->get('packages/view', 'Packages::show');
     $routes->get('packages/outview', 'Packages::outshow');
-    $routes->get('outgoing', 'Packages::outgoing');
+    $routes->get('packages/outgoing', 'Packages::outgoing');
     $routes->get('outgoingAdd', 'Packages::outgoingAddPage');
     $routes->post('outgoingAdd', 'Packages::outgoingAdd');
-    $routes->get('history', 'Packages::history');
-    $routes->get('history/view', 'Packages::historyView');
+    $routes->get('packages/history', 'Packages::history');
+    $routes->get('packages/history/view', 'Packages::historyView');
     $routes->get('destinations', 'Packages::destinations');
     $routes->post('createDestination', 'Packages::createDestination');
     $routes->get('profile', 'Auth::profile');
