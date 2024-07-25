@@ -33,6 +33,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->post('createDestination', 'Packages::createDestination');
     $routes->get('profile', 'Auth::profile');
     $routes->get('payments', 'Payments::index');
+    $routes->get('payments/paybill', 'Payments::paybill');
     $routes->get('payments/registration', 'Payments::registration');
     $routes->get('payments/route', 'Payments::route');
     $routes->get('payments/savings', 'Payments::savings');

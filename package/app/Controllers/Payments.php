@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AuthModel;
+use App\Models\MpesaModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Payments extends BaseController
@@ -19,6 +20,28 @@ class Payments extends BaseController
             'userInfo' => $userInfo
         ];
         return view('payments/index', $data);
+    }
+
+    public function paybill()
+    {
+        helper('number');
+        $model = model(MpesaModel::class);
+        $userModel = new AuthModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+
+        $totalAmount = $model->selectSum('TransAmount')->first()['TransAmount'];
+
+        $total = number_to_currency($totalAmount, 'KES', 'en_US', 2);
+
+        $data = [
+            'payments'  => $model->getPayments(),
+            'title' => 'Payments',
+            'userInfo' => $userInfo,
+            'total' => $total
+        ];
+
+        return view('payments/paybill', $data);
     }
 
     public function registration()
