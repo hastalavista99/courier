@@ -25,6 +25,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('packages/view', 'Packages::show');
     $routes->get('packages/outview', 'Packages::outshow');
     $routes->get('packages/outgoing', 'Packages::outgoing');
+    $routes->get('packages/all', 'Packages::all');
     $routes->get('outgoingAdd', 'Packages::outgoingAddPage');
     $routes->post('outgoingAdd', 'Packages::outgoingAdd');
     $routes->get('packages/history', 'Packages::history');

@@ -72,6 +72,14 @@ class PackagesModel extends Model
                     ->join('auth as destination', 'packages.destination_id = destination.id')
                     ->findAll();
     }
+    public function getProcessedPackages()
+    {
+        return $this->select('packages.*, origin.username as origin_name, destination.username as destination_name')
+                    ->join('auth as origin', 'packages.origin_id = origin.id')
+                    ->join('auth as destination', 'packages.destination_id = destination.id')
+                    ->where('status', 'Received')
+                    ->findAll();
+    }
 
     public function incoming($id)
     {

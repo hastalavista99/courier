@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-2 pt-3">
                     <div>
-                        <a href="<?= site_url('accounts') ?>" class="btn btn-success">
+                        <a href="<?= site_url('payments') ?>" class="btn btn-success">
                             <i class="material-icons opacity-10">chevron_left</i>
                             Back
                         </a>

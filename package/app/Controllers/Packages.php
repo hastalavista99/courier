@@ -294,9 +294,6 @@ class Packages extends BaseController
         $data = [
             'status' => 'Received',
         ];
-
-        log_message('debug', 'Package ID: ' . print_r($packageId, true));
-log_message('debug', 'Data: ' . print_r($data, true));
         
         $query = $packageModel->update($packageId, $data); // Update the data using the ID directly
         
@@ -331,15 +328,35 @@ log_message('debug', 'Data: ' . print_r($data, true));
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
         $packageModel = new PackagesModel();
-        $packages = $packageModel->getPackagesWithUsernames();
+        $packages = $packageModel->getProcessedPackages();
 
 
         $data = [
-            'title' => 'History',
+            'title' => 'History - (Processed)',
             'userInfo' => $userInfo,
             'packages' => $packages,
 
         ];
         return view('dashboard/history', $data);
+    }
+
+    public function all()
+    {
+        helper(['form', 'url']);
+        $userModel = new AuthModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+
+        $packageModel = new PackagesModel();
+        $packages = $packageModel->getPackagesWithUsernames();
+
+        $data = [
+            'title' => 'All Packages',
+            'userInfo' => $userInfo,
+            'packages' => $packages,
+        ];
+
+        return view('dashboard/all', $data);
+
     }
 }
