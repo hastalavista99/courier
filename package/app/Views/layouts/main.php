@@ -19,7 +19,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets/img/apple-icon.png') ?>" />
-  <link rel="icon" type="image/png" href="<?= base_url('assets/img/icons/logocourier.png')?>" />
+  <link rel="icon" type="image/png" href="<?= base_url('assets/img/icons/logocourier.png') ?>" />
   <title><?= $this->renderSection('title') ?></title>
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
   <!--     Fonts and icons     -->
@@ -45,19 +45,19 @@
 <body class="g-sidenav-show bg-gray-200">
 
 
-  <?= $this->include('partials/sidebar')?>
-  
+  <?= $this->include('partials/sidebar') ?>
+
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <div class="spinner-wrapper">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Loading...</span>
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
-  </div>
-  <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
       <div class="container-fluid px-3">
-        
+
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group input-group-outline">
@@ -79,39 +79,57 @@
               <a href="javascript:;" class="nav-link text-body p-0 font-weight-bold" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-user cursor-pointer me-1"></i>
                 <span class="d-sm-inline d-none">
-                  <?= esc($userInfo['username'])?></span>
+                  <?= esc($userInfo['username']) ?></span>
                 <i class="fa fa-caret-down cursor-pointer"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="<?= site_url('profile')?>">
+                <?php
+                if ($userInfo['role'] != 'customer') {
+                ?>
+                  <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="<?= site_url('profile') ?>">
+                      <div class="d-flex py-1">
+                        <i class="material-icons opacity-10 me-2">account_circle</i>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            My Profile
+                          </h6>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                      <div class="d-flex py-1">
+                        <i class="material-icons opacity-10 me-2">settings</i>
+                        <div class="d-flex flex-column justify-content-center">
+
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            Settings
+                          </h6>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="<?= site_url('logout') ?>">
                     <div class="d-flex py-1">
-                    <i class="material-icons opacity-10 me-2">account_circle</i>
+                      <i class="material-icons opacity-10 me-2">logout</i>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          My Profile
+                          Sign Out
                         </h6>
                       </div>
                     </div>
                   </a>
                 </li>
+                <?php
+                }
+                ?>
                 <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                  <a class="dropdown-item border-radius-md" href="<?= site_url('auth/customer/logout') ?>">
                     <div class="d-flex py-1">
-                      <i class="material-icons opacity-10 me-2">settings</i>
-                      <div class="d-flex flex-column justify-content-center">
-                        
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          Settings
-                        </h6>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="<?= site_url('logout')?>">
-                    <div class="d-flex py-1">
-                    <i class="material-icons opacity-10 me-2">logout</i>
+                      <i class="material-icons opacity-10 me-2">logout</i>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
                           Sign Out
@@ -139,7 +157,7 @@
                 ©
                 <script>
                   document.write(new Date().getFullYear());
-                </script>, 
+                </script>,
                 <a href="https://www.macrologicsys.com" class="font-weight-bold" target="_blank">McLogic</a>
               </div>
             </div>
@@ -541,7 +559,6 @@
     });
   </script>
   <script>
-
     var win = navigator.platform.indexOf("Win") > -1;
     if (win && document.querySelector("#sidenav-scrollbar")) {
       var options = {
@@ -551,8 +568,8 @@
     }
   </script>
   <!-- Github buttons -->
-  
-  <script src="<?= base_url('assets/js/material-dashboard.min.js?v=3.1.0')?>"></script>
+
+  <script src="<?= base_url('assets/js/material-dashboard.min.js?v=3.1.0') ?>"></script>
 </body>
 
 </html>

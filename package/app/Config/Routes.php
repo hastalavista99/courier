@@ -15,8 +15,11 @@ $routes->post('registerUser', 'Auth::registerUser');
 $routes->get('login', 'Auth::index');
 $routes->get('auth/login', 'Auth::index');
 $routes->get('auth', 'Auth::index');
+$routes->get('auth/customer', 'Auth::customer');
 $routes->post('login', 'Auth::loginUser');
+$routes->post('authCustomer', 'Auth::authCustomer');
 $routes->get('logout', 'Auth::logout');
+$routes->get('auth/customer/logout', 'Auth::customerLogout');
 
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('dashboard', 'Dashboard::index');
@@ -26,6 +29,7 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('packages/outview', 'Packages::outshow');
     $routes->get('packages/outgoing', 'Packages::outgoing');
     $routes->get('packages/all', 'Packages::all');
+    $routes->get('packages/customer', 'Packages::customer');
     $routes->get('outgoingAdd', 'Packages::outgoingAddPage');
     $routes->post('outgoingAdd', 'Packages::outgoingAdd');
     $routes->get('packages/history', 'Packages::history');

@@ -8,14 +8,16 @@ use CodeIgniter\HTTP\SiteURI;
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets/img/apple-icon.png')?>">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="<?= base_url('assets/img/icons/courier.png')?>">
     <title>
         Sign In
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
@@ -30,22 +32,22 @@ use CodeIgniter\HTTP\SiteURI;
 <body class="bg-gray-200">
 
     <main class="main-content  mt-0">
-        <div class="page-header align-items-start min-vh-100" style="background-image: url('assets/img/illustrations/cour.jpg');">
+        <div class="page-header align-items-start min-vh-100" style="background-image: url('<?= base_url('assets/img/illustrations/cour.jpg')?>');">
             <span class="mask bg-gradient-dark opacity-6"></span>
             <div class="container my-auto">
                 <div class="row">
                     <div class="col-lg-4 col-md-8 col-12 mx-auto">
                         <div class="card z-index-0 fadeIn3 fadeInBottom">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                    <h4 class="text-white font-weight-bolder text-center">Sign in</h4>
+                                <div class="bg-gradient-primary shadow-info border-radius-lg py-3 pe-1">
+                                    <h4 class="text-white font-weight-bolder text-center">Customer Sign in</h4>
 
                                 </div>
                             </div>
 
                             <div class="card-body">
 
-                                <form role="form" id="signupForm" class="text-start" method="post" action="<?= site_url('login') ?>">
+                                <form method="post" action="<?= site_url('authCustomer')?>">
                                     <?= csrf_field() ?>
 
                                     <?php
@@ -79,13 +81,13 @@ use CodeIgniter\HTTP\SiteURI;
                                     <?php
                                     }
                                     ?>
-                                    <div class="my-3 input-group input-group-outline">
-                                        <label class="form-label">Username</label>
+                                    <div class="my-3 input-group input-group-dynamic">
+                                        <label class="form-label">Name</label>
                                         <input type="text" name="name" class="form-control ps-2" value="" required>
                                     </div>
-                                    <div class="mb-3 input-group input-group-outline">
-                                        <label class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control ps-2" required>
+                                    <div class="mb-3 input-group input-group-dynamic">
+                                        <label class="form-label">Phone </label>
+                                        <input type="tel" name="phone" pattern="[0-9]{10}" class="form-control ps-2" required>
                                     </div>
                                     <!-- <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" name="remember" <?php if (!empty($remember)) { ?>checked <?php } elseif (isset($_COOKIE["remember"])) { ?> <?php } ?>>
@@ -95,10 +97,6 @@ use CodeIgniter\HTTP\SiteURI;
                                         <input type="submit" value="Sign In" class="btn bg-gradient-primary w-100 my-4 mb-2">
                                     </div>
                                 </form>
-                                <div class="text-primary text-decoration-underline text-md-center">
-                                    <a href="<?= site_url('auth/customer') ?>" class=" ">Check My Parcels</a>
-                                </div>
-
                             </div>
                         </div>
                     </div>

@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\AuthModel;
 use CodeIgniter\Database\Exceptions\DatabaseException;
 use App\Libraries\Hash;
+use App\Models\PackagesModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Auth extends BaseController
@@ -150,5 +151,44 @@ class Auth extends BaseController
         }
 
         return redirect()->to('auth?access=loggedout')->with('fail', "You are logged out");
+    }
+
+    public function customer()
+    {
+        helper(['form', 'url']);
+
+        return view('auth/customer');
+    }
+
+    public function authCustomer()
+    {
+        helper(['form', 'url']);
+
+        $phone = esc($this->request->getPost('phone'));
+        $name = esc($this->request->getPost('name'));
+        $packagesModel = new PackagesModel();
+        $search = $packagesModel->getCustomerPackages($phone);
+
+        if(empty($search))
+        {
+            return redirect()->to('auth/customer')->with('fail', 'You do not have packages in the system');
+        }
+        session()->set('loggedInUser', $name);
+        session()->set('userInfo', [
+            'username' => $name,
+            'mobile' => $phone,
+            'role' => 'customer'
+        ]);
+
+        return redirect()->to('packages/customer')->with('success', 'Welcome, here are your parcels');
+    }
+
+    public function customerLogout()
+    {
+        if (session()->has('loggedInUser')) {
+            session()->remove('loggedInUser');
+        }
+
+        return redirect()->to('auth/customer?access=loggedout')->with('fail', "You are logged out");
     }
 }

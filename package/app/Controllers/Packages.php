@@ -359,4 +359,23 @@ class Packages extends BaseController
         return view('dashboard/all', $data);
 
     }
+
+    public function customer()
+    {
+        helper(['form', 'url']);
+
+        $userInfo = session()->get('userInfo');
+
+        $customer = $userInfo['mobile'];
+        $packageModel = new PackagesModel();
+        $packages = $packageModel->getCustomerPackages($customer);
+        
+        $data = [
+            'title' => 'My Packages',
+            'userInfo' => $userInfo,
+            'packages' => $packages,
+        ];
+
+        return view('dashboard/customer', $data);
+    }
 }
