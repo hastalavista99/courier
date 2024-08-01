@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Controllers\SendSMS;
 use App\Models\AuthModel;
 use App\Models\DestinationsModel;
+use App\Models\ComplaintsModel;
 use App\Libraries\Hash;
 use App\Models\PackagesModel;
 use App\Models\SmsModel;
@@ -65,7 +66,7 @@ class Packages extends BaseController
 
         return view('incoming/show', $data);
     }
-
+    
     public function outshow()
     {
         helper(['form', 'url']);
@@ -377,5 +378,70 @@ class Packages extends BaseController
         ];
 
         return view('dashboard/customer', $data);
+    }
+
+    public function complaints()
+    {
+        helper(['form', 'url']);
+
+        $userInfo = session()->get('userInfo');
+        $mobile = $userInfo['mobile'];
+        $complaintModel = new ComplaintsModel();
+        $complaints = $complaintModel->where('mobile', $mobile)->findAll();
+
+        $data = [
+            'title' => 'My Complaints',
+            'userInfo' => $userInfo,
+            'complaints' => $complaints
+        ];
+
+        return view('complaints/form', $data);
+
+    }
+
+    public function allComplaints()
+    {
+     
+        helper(['form', 'url']);
+        $userModel = new AuthModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+
+        $complaintModel = new ComplaintsModel();
+        $complaints = $complaintModel->findAll();
+        $data = [
+            'title' => 'Complaints',
+            'userInfo' => $userInfo,
+            'complaints' => $complaints,
+            ];
+
+        return view('complaints/index', $data);
+    }
+
+    public function newComplaint()
+    {
+        helper(['form', 'url']);
+
+        $userInfo = session()->get('userInfo');
+        $complaintModel = new ComplaintsModel();
+
+        $message = esc($this->request->getPost('message'));
+        $mobile = $userInfo['mobile'];
+        $name = $userInfo['username'];
+        $data = [
+            'name' => $name,
+            'mobile' => $mobile,
+            'message' => $message,
+        ];
+
+        $query = $complaintModel->save($data);
+
+        if(!$query)
+        {
+            return redirect()->back()->with('fail', 'Something went wrong.');
+        }
+
+        return redirect()->back()->with('success', 'Complaint sent successfully');
+
     }
 }

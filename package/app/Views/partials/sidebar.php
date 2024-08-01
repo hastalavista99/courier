@@ -49,6 +49,14 @@
             <span class="nav-link-text ms-1">All Packages</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="<?= site_url('packages/customer/complaints') ?>">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">forum</i>
+            </div>
+            <span class="nav-link-text ms-1">Complaints</span>
+          </a>
+        </li>
       <?php
       }
       ?>
@@ -103,6 +111,14 @@
               <i class="material-icons opacity-10">inventory</i>
             </div>
             <span class="nav-link-text ms-1">My Packages</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="<?= site_url('packages/complaints') ?>">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">forum</i>
+            </div>
+            <span class="nav-link-text ms-1">Complaints</span>
           </a>
         </li>
       <?php

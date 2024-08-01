@@ -112,32 +112,39 @@
                     </a>
                   </li>
                   <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="<?= site_url('logout') ?>">
-                    <div class="d-flex py-1">
-                      <i class="material-icons opacity-10 me-2">logout</i>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          Sign Out
-                        </h6>
+                    <a class="dropdown-item border-radius-md" href="<?= site_url('logout') ?>">
+                      <div class="d-flex py-1">
+                        <i class="material-icons opacity-10 me-2">logout</i>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            Sign Out
+                          </h6>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                </li>
+                    </a>
+                  </li>
                 <?php
                 }
                 ?>
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="<?= site_url('auth/customer/logout') ?>">
-                    <div class="d-flex py-1">
-                      <i class="material-icons opacity-10 me-2">logout</i>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          Sign Out
-                        </h6>
+
+                <?php
+                if ($userInfo['role'] == 'customer') {
+                ?>
+                  <li class="mb-2">
+                    <a class="dropdown-item border-radius-md" href="<?= site_url('auth/customer/logout') ?>">
+                      <div class="d-flex py-1">
+                        <i class="material-icons opacity-10 me-2">logout</i>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="text-sm font-weight-normal mb-1">
+                            Sign Out
+                          </h6>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                </li>
+                    </a>
+                  </li>
+                <?php
+                }
+                ?>
               </ul>
             </li>
           </ul>

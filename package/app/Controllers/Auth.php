@@ -180,13 +180,16 @@ class Auth extends BaseController
             'role' => 'customer'
         ]);
 
-        return redirect()->to('packages/customer')->with('success', 'Welcome, here are your parcels');
+        return redirect()->to('packages/customer');
     }
 
     public function customerLogout()
     {
         if (session()->has('loggedInUser')) {
             session()->remove('loggedInUser');
+        }
+        if (session()->has('userInfo')) {
+            session()->remove('userInfo');
         }
 
         return redirect()->to('auth/customer?access=loggedout')->with('fail', "You are logged out");

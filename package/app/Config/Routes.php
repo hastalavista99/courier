@@ -30,6 +30,9 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes){
     $routes->get('packages/outgoing', 'Packages::outgoing');
     $routes->get('packages/all', 'Packages::all');
     $routes->get('packages/customer', 'Packages::customer');
+    $routes->get('packages/customer/complaints', 'Packages::allComplaints');
+    $routes->get('packages/complaints', 'Packages::complaints');
+    $routes->post('packages/complaints/new', 'Packages::newComplaint');
     $routes->get('outgoingAdd', 'Packages::outgoingAddPage');
     $routes->post('outgoingAdd', 'Packages::outgoingAdd');
     $routes->get('packages/history', 'Packages::history');
