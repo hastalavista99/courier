@@ -28,7 +28,7 @@
   <link href="<?= base_url('assets/css/nucleo-icons.css') ?>" rel="stylesheet" />
   <link href="<?= base_url('assets/css/nucleo-svg.css') ?> " rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/919ef0a1c2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
@@ -165,13 +165,13 @@
                 <script>
                   document.write(new Date().getFullYear());
                 </script>,
-                <a href="https://www.macrologicsys.com" class="font-weight-bold" target="_blank">McLogic</a>
+                <a href="#" class="font-weight-bold" target="_blank">Jackson</a>
               </div>
             </div>
             <div class="col-lg-6">
               <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                 <li class="nav-item">
-                  <a href="https://www.macrologicsys.com" class="nav-link text-muted" target="_blank">McLogic</a>
+                  <a href="#" class="nav-link text-muted" target="_blank">Jackson</a>
                 </li>
                 <li class="nav-item">
                   <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
